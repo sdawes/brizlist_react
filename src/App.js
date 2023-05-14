@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from 'react';
+
+// eslint-disable-next-line no-unused-vars
+import dynamodb from './awsconfig';
+
+import DataFetchingComponent from './DataFetchingComponent';
+import VenueListComponent from './VenueListComponent';
 
 function App() {
+  const [data, setData] = useState([]);
+
+  const handleDataFetched = (fetchedData) => {
+    setData(fetchedData);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>brizlist</p>
+      <DataFetchingComponent onDataFetched={handleDataFetched} />
+      <VenueListComponent data={data} />
     </div>
   );
 }
